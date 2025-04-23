@@ -1,7 +1,12 @@
 # gnss-robot-localization
 
 ```
+source /opt/ros/humble/setup.bash
 sudo apt install ros-humble-robot-localization
+sudo apt install \
+  ros-humble-navigation2 \
+  ros-humble-nav2-bringup \
+  ros-humble-nav2-minimal-tb*
 ```
 ```
 pip install -r requirements.txt
