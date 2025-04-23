@@ -1,0 +1,19 @@
+# Python core dependencies
+pyproj>=3.4.0 # For UTM coordinate conversion (alternative: utm)
+numpy>=1.21.0 # Numerical calculations
+
+# Essential for ROS 2 Humble
+ros-humble-geometry-msgs # Pose/NavSatFix message types
+ros-humble-sensor-msgs # NavSatFix message types
+ros-humble-tf2-ros # Coordinate system transformation
+
+# Development tools (optional)
+ros-humble-rviz2 # Visual debugging
+
+# Advanced GNSS processing
+geographiclib>=2.0 # Geodetic calculations
+rtklib-python>=0.1.0 # RTK-GNSS support
+
+# Debugging tools
+plotly>=5.10.0 # Covariance visualization
+ros-humble-plotjuggler # ROS data visualization
