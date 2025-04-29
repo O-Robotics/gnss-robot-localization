@@ -4,46 +4,45 @@ from launch_ros.actions import Node
 def generate_launch_description():
     return LaunchDescription([
         Node(
+            package='gnss_ekf',
+            executable='gnss2pose',
+            name='gnss_to_pose',
+            output='screen'
+        ),
+        Node(
             package='robot_localization',
             executable='ekf_node',
             name='ekf_filter_node',
             output='screen',
             parameters=[{
-                'frequency': 10.0,  # match with gnss update freq
+                'frequency': 10.0,
                 'world_frame': 'map',
                 'odom_frame': 'odom',
                 'base_link_frame': 'base_link',
                 'map_frame': 'map',
-                
                 'pose0': 'gnss_pose',
-                'pose0_config': [True, True, True,   # X, Y, Z
-                                False, False, False],  # do not use diretional data
-                
-                # adjust process noise based on GNSS covariance
+                'pose0_config': [True, True, True, False, False, False],
                 'process_noise_covariance': [
-                    10.0, 0.0, 0.0, 0.0, 0.0, 0.0,   # X variance about 80-126
-                    0.0, 10.0, 0.0, 0.0, 0.0, 0.0,   # Y 80
-                    0.0, 0.0, 10.0, 0.0, 0.0, 0.0,   # Z 170
-                    0.0, 0.0, 0.0, 0.1, 0.0, 0.0,   # Roll
-                    0.0, 0.0, 0.0, 0.0, 0.1, 0.0,   # Pitch
-                    0.0, 0.0, 0.0, 0.0, 0.0, 0.1    # Yaw
+                    10.0, 0, 0, 0, 0, 0,
+                    0, 10.0, 0, 0, 0, 0,
+                    0, 0, 10.0, 0, 0, 0,
+                    0, 0, 0, 0.1, 0, 0,
+                    0, 0, 0, 0, 0.1, 0,
+                    0, 0, 0, 0, 0, 0.1
                 ],
-                
-                # iec（alignwith gnss initial precision）
                 'initial_estimate_covariance': [
-                    100.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-                    0.0, 100.0, 0.0, 0.0, 0.0, 0.0,
-                    0.0, 0.0, 200.0, 0.0, 0.0, 0.0,
-                    0.0, 0.0, 0.0, 0.5, 0.0, 0.0,
-                    0.0, 0.0, 0.0, 0.0, 0.5, 0.0,
-                    0.0, 0.0, 0.0, 0.0, 0.0, 0.5
+                    100.0, 0, 0, 0, 0, 0,
+                    0, 100.0, 0, 0, 0, 0,
+                    0, 0, 200.0, 0, 0, 0,
+                    0, 0, 0, 0.5, 0, 0,
+                    0, 0, 0, 0, 0.5, 0,
+                    0, 0, 0, 0, 0, 0.5
                 ],
-                
-                'two_d_mode': False,  # keep 3d because it has altitude
+                'two_d_mode': False,
                 'transform_time_offset': 0.0,
                 'transform_timeout': 0.0,
                 'print_diagnostics': True,
-                'debug': True  # to see details
+                'debug': True
             }],
             remappings=[
                 ('odometry/filtered', 'odometry/global'),
