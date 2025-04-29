@@ -1,14 +1,14 @@
 from setuptools import setup
 
 setup(
-    name='gnss_ekf',
+    name='gnss-robot-localization',
     version='0.0.1',
-    packages=['gnss_ekf'],
+    packages=['gnss-robot-localization'],
     data_files=[
         ('share/ament_index/resource_index/packages',
-            ['resource/' + 'gnss_ekf']),
-        ('share/gnss_ekf/launch', ['gnss_ekf.launch.py']),
-        ('share/gnss_ekf', ['package.xml']),
+            ['resource/gnss-robot-localization']),
+        ('share/gnss-robot-localization/launch', ['gnss_ekf.launch.py']),
+        ('share/gnss-robot-localization', ['package.xml']),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
