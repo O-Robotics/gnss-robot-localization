@@ -1,5 +1,5 @@
 <package format="3">
-  <name>gnss_ekf</name>
+  <name>gnss-robot-localization</name>
   <version>0.0.0</version>
   <description>GNSS localization with EKF</description>
   
