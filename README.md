@@ -1,4 +1,5 @@
 # gnss-robot-localization
+This is the dependent package: [robot_localization](https://github.com/cra-ros-pkg/robot_localization).
 
 ```
 source /opt/ros/humble/setup.bash
